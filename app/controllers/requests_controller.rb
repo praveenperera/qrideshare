@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!
 
 
-  # GET /requests s
+  # GET /requests
   # GET /requests.json
   def index
     @incoming_requests = Request.where(:user_id => current_user.id )
