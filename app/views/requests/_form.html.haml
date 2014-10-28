@@ -1,0 +1,23 @@
+= form_for @request, html: { class: "form form-horizontal request" } do |f|
+  .form-group
+    = f.label :user_id, class: 'control-label'
+    .controls
+      = f.text_field :user_id, class: 'form-control', required: true
+    = error_span(@request[:user_id])
+  .form-group
+    = f.label :ride_id, class: 'control-label'
+    .controls
+      = f.text_field :ride_id, class: 'form-control', required: true
+    = error_span(@request[:ride_id])
+  .form-group
+    = f.label :passenger, class: 'control-label'
+    .controls
+      = f.text_field :passenger, class: 'form-control', required: true
+    = error_span(@request[:passenger])
+  .form-group
+    = f.label :ignore, class: 'control-label'
+    .controls
+      = f.text_field :ignore, class: 'form-control', required: true
+    = error_span(@request[:ignore])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), requests_path, :class => 'btn btn-default'

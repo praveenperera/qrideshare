@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @booking.user_id
+%p
+  %b Ride:
+  = @booking.ride_id
+%p
+  %b Passenger:
+  = @booking.passenger
+
+= link_to 'Edit', edit_booking_path(@booking)
+\|
+= link_to 'Back', bookings_path

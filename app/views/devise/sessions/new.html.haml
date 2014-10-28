@@ -1,0 +1,20 @@
+= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+	.col-lg-6.col-lg-offset-3
+		.panel.panel-default
+			.panel-heading
+				%h1.panel-title Log in
+			.panel-body
+				%div.form-group.input-group
+					= f.email_field_without_bootstrap :email, autofocus: true, placeholder: "Email", class: "form-control"
+					%span.input-group-addon
+						%i.glyphicon.glyphicon-user
+				%div.input-group.form-group
+					= f.password_field_without_bootstrap :password, autocomplete: "off",placeholder: "Password",  class: "form-control"
+					%span.input-group-addon
+						%i.glyphicon.glyphicon-lock
+				- if devise_mapping.rememberable?
+					%div
+						= f.check_box :remember_me
+				%div= f.submit "Log in"
+				%br
+				= render "devise/shared/links"

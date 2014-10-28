@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver: MyString
+  source: MyText
+  destination: MyText
+  spots_available: 
+  spots_taken: 
+  passenger1: MyString
+  passenger2: MyString
+  passenger3: MyString
+  passenger4: MyString
+  passenger5: MyString
+  passenger6: MyString
+  passenger7: MyString
+
+two:
+  driver: MyString
+  source: MyText
+  destination: MyText
+  spots_available: 
+  spots_taken: 
+  passenger1: MyString
+  passenger2: MyString
+  passenger3: MyString
+  passenger4: MyString
+  passenger5: MyString
+  passenger6: MyString
+  passenger7: MyString

@@ -1,0 +1,10 @@
+= simple_form_for(@booking) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :ride_id
+    = f.input :passenger
+
+  .form-actions
+    = f.button :submit
