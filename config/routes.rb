@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  resources :bookings
-
-  resources :requests
-
+  
+  resources :requests do
+    get 'bookings', on: :member
+  end
+    
   devise_for :users
-  resources :rides
+
+  resources :rides do
+    patch 'accept', on: :member
+  end  
+
   root to: "rides#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -13,8 +13,6 @@
 				%th= model_class.human_attribute_name(:ride_id)
 				%th= "Passenger ID"
 				%th= model_class.human_attribute_name(:passenger)
-				%th= model_class.human_attribute_name(:ignore)
-				%th= model_class.human_attribute_name(:created_at)
 				%th=t '.actions', :default => t("helpers.actions")
 		%tbody
 			- @incoming_requests.each do |request| 
@@ -25,11 +23,11 @@
 					%td= request.ride_id
 					%td= request.passenger_id
 					%td= request.passenger
-					%td= request.ignore
-					%td= request.created_at
 					%td
-						= link_to t('.edit', :default => t("helpers.links.edit")), edit_request_path(request), :class => 'btn btn-default btn-xs'
-						= link_to t('.destroy', :default => t("helpers.links.destroy")), request_path(request), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+						= link_to "Ignore", request_path(request, :request=> {:ignore => 'true'}), :method => :patch, :class => 'btn btn-xs btn-danger'
+						= link_to "Accept", accept_ride_path(@rides, :ride_id => request.ride_id, :id => request.ride_id , :accept => 'true', :request_id => request.id), :method => :patch, :class => 'btn btn-xs btn-success'
+						-# = link_to t('.edit', :default => t("helpers.links.edit")), edit_request_path(request), :class => 'btn btn-default btn-xs'
+						-# = link_to t('.destroy', :default => t("helpers.links.destroy")), request_path(request), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 - else
 	%h3 Incoming Requests
 	"Sorry no requests to ride with you yet :(" 
@@ -46,8 +44,6 @@
 				%th= model_class.human_attribute_name(:ride_id)
 				%th= "Passenger ID"
 				%th= model_class.human_attribute_name(:passenger)
-				%th= model_class.human_attribute_name(:ignore)
-				%th= model_class.human_attribute_name(:created_at)
 				%th=t '.actions', :default => t("helpers.actions")
 		%tbody
 			- @outgoing_requests.each do |request| 
@@ -58,8 +54,6 @@
 					%td= request.ride_id
 					%td= request.passenger_id
 					%td= request.passenger
-					%td= request.ignore
-					%td= request.created_at
 					%td
 						= link_to t('.edit', :default => t("helpers.links.edit")), edit_request_path(request), :class => 'btn btn-default btn-xs'
 						= link_to t('.destroy', :default => t("helpers.links.destroy")), request_path(request), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'

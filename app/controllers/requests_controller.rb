@@ -1,13 +1,14 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy, :bookings]
   before_action :authenticate_user!
+  before_action :require_permission, except: [:index, :new, :create]
 
 
   # GET /requests
   # GET /requests.json
   def index
-    @incoming_requests = Request.where(:user_id => current_user.id )
-    @outgoing_requests = Request.where(:passenger_id => current_user.id )
+    @incoming_requests = Request.where(:user_id => current_user.id).where.not(:ignore => 'true', :accept => 'true')
+    @outgoing_requests = Request.where(:passenger_id => current_user.id)
   end
 
   # GET /requests/1
@@ -21,8 +22,8 @@ class RequestsController < ApplicationController
   end
 
   # GET /requests/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /requests
   # POST /requests.json
@@ -45,7 +46,7 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
+        format.html { redirect_to requests_path, notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit }
@@ -64,6 +65,10 @@ class RequestsController < ApplicationController
     end
   end
 
+  def bookings
+    redirect_to requests_path, notice: 'Bookings route working'
+  end  
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
@@ -72,6 +77,13 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:user_id, :ride_id, :passenger, :ignore, :passenger_id)
+      params.require(:request).permit(:user_id, :ride_id, :passenger, :ignore, :passenger_id, :accept)
     end
+
+    def require_permission
+      if current_user.id != Request.find(params[:id]).user_id
+        redirect_to requests_path, alert: "You're only allowed to edit your own requests"
+      end
+    end
+
 end

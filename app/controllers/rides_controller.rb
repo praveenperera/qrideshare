@@ -1,5 +1,5 @@
 class RidesController < ApplicationController
-  before_action :set_ride, only: [:show, :edit, :update, :destroy]
+  before_action :set_ride, only: [:show, :edit, :update, :destroy, :accept]
   before_action :authenticate_user!, except:[:index, :show]
 
   # GET /rides
@@ -19,8 +19,25 @@ class RidesController < ApplicationController
     @ride = current_user.rides.new
   end
 
+  def accept
+    ride = Ride.find(params[:ride_id])
+    if ride.spots_taken < ride.spots_available
+      @ride.increment!(:spots_taken)      
+      @request =  Request.find_by_id(params[:request_id])
+      @request.update_attribute(:accept, 'true')
+      redirect_to requests_path, notice: 'Passenger request was accepted'
+    else
+      redirect_to requests_path, alert: 'Ride is already full'
+    end  
+  end
+
   # GET /rides/1/edit
-  def edit
+  def edit 
+    if current_user.id == @ride.user_id
+      render :edit 
+    else
+      redirect_to rides_path, alert: 'You can only change the rideshares you created.'
+    end
   end
 
   # POST /rides
@@ -85,6 +102,6 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:user_id, :driver, :source, :destination, :spots_available, :spots_taken, :leaving_time, :leaving_date, :price)
+      params.require(:ride).permit(:user_id, :driver, :source, :destination, :spots_available, :spots_taken, :leaving_time, :leaving_date, :price, :accept)
     end
 end

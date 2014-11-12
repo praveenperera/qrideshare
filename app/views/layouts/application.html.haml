@@ -29,6 +29,7 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to "Requests", "/requests"
+            %li= link_to "Bookings", "/bookings"
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li= link_to current_user.email, edit_user_registration_path
