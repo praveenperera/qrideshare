@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  
+
+  match 'driver_bookings' => 'requests', :via => :get
+  match 'passenger_bookings' => 'requests', :via => :get
   resources :requests do
-    get 'bookings', on: :member
+    get 'driver_bookings', on: :member
+    get 'passenger_bookings', on: :member
   end
     
   devise_for :users

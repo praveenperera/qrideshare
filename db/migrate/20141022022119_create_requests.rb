@@ -5,7 +5,7 @@ class CreateRequests < ActiveRecord::Migration
       t.integer :ride_id
       t.string :passenger
       t.string :ignore, null: false, default: false
-      t.string :accept, null: false, default: false\
+      t.string :accept, null: false, default: false
       t.timestamps
     end
   end

@@ -29,7 +29,9 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to "Requests", "/requests"
-            %li= link_to "Bookings", "/bookings"
+            %li= link_to "Driver's Bookings", "/driver_bookings"
+            %li= link_to "Passengers's Bookings", "/passenger_bookings"
+
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li= link_to current_user.email, edit_user_registration_path

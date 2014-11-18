@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy, :bookings]
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :require_permission, except: [:index, :new, :create]
+  before_action :require_permission, only: [:show, :edit, :update]
 
 
   # GET /requests
@@ -65,8 +65,14 @@ class RequestsController < ApplicationController
     end
   end
 
-  def bookings
-    redirect_to requests_path, notice: 'Bookings route working'
+  def driver_bookings
+    @rides = Ride.where(:user_id => current_user.id)
+    @driver_bookings = Request.where(:user_id => current_user.id, :accept => 'true')
+  end  
+
+  def passenger_bookings
+    @rides = Ride.where(:passenger_id => current_user.id)
+    @passenger_bookings = Request.where(:passenger_id => current_user.id, :accept => 'true')
   end  
     
   private

@@ -1,0 +1,32 @@
+- model_class = Request
+.page-header
+	%h1= 'Bookings'
+	= link_to t('.new', :default => t("helpers.links.new")), new_ride_path, :class => 'btn btn-primary'
+.col-lg-8
+	- @passenger_bookings.each do |p|
+		.panel.panel-default
+			.panel-heading
+				%h1.panel-title
+					="#{p.ride.source} --> #{p.ride.destination}"
+			.panel-body
+				.row
+					.col-lg-3
+						%h1
+							=p.ride.leaving_date
+						-# %h2
+						-# 	=ride.leaving_time
+						%h2
+							=number_to_currency(p.ride.price)
+					.col-lg-5
+						.row
+							%h3
+								%strong Name: 
+								=p.ride.driver
+						.row
+							%h3
+								%strong Time: 
+								=p.ride.leaving_time
+				.row					
+					.col-lg-8
+						%h2
+							Description:					
