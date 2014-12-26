@@ -2,11 +2,22 @@ Rails.application.routes.draw do
 
   match 'driver_bookings' => 'requests', :via => :get
   match 'passenger_bookings' => 'requests', :via => :get
+  get 'empty_trash', to: 'conversations#empty_trash'
+
   resources :requests do
     get 'driver_bookings', on: :member
     get 'passenger_bookings', on: :member
   end
-    
+
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+      post :erase
+    end
+  end
+        
   devise_for :users
 
   resources :rides do
