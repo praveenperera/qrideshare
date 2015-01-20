@@ -5,7 +5,7 @@ class CreateRides < ActiveRecord::Migration
       t.text :source
       t.text :destination
       t.integer :spots_available
-      t.integer :spots_taken
+      t.integer :spots_taken, :default => 0 
       t.float :price
       t.timestamps
     end

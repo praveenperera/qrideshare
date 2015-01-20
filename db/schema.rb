@@ -16,7 +16,12 @@ ActiveRecord::Schema.define(version: 20141219013928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "mailboxer_conversation_opt_outs", force: true do |t|
+  create_table "bookings", id: false, force: :cascade do |t|
+    t.string  "bookings"
+    t.integer "passenger_id"
+  end
+
+  create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.integer "unsubscriber_id"
     t.string  "unsubscriber_type"
     t.integer "conversation_id"
@@ -25,13 +30,13 @@ ActiveRecord::Schema.define(version: 20141219013928) do
   add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id", using: :btree
   add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type", using: :btree
 
-  create_table "mailboxer_conversations", force: true do |t|
+  create_table "mailboxer_conversations", force: :cascade do |t|
     t.string   "subject",    default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
-  create_table "mailboxer_notifications", force: true do |t|
+  create_table "mailboxer_notifications", force: :cascade do |t|
     t.string   "type"
     t.text     "body"
     t.string   "subject",              default: ""
@@ -54,7 +59,7 @@ ActiveRecord::Schema.define(version: 20141219013928) do
   add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type", using: :btree
   add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type", using: :btree
 
-  create_table "mailboxer_receipts", force: true do |t|
+  create_table "mailboxer_receipts", force: :cascade do |t|
     t.integer  "receiver_id"
     t.string   "receiver_type"
     t.integer  "notification_id",                            null: false
@@ -69,32 +74,32 @@ ActiveRecord::Schema.define(version: 20141219013928) do
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
 
-  create_table "requests", force: true do |t|
+  create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "ride_id"
     t.string   "passenger"
+    t.string   "ignore",       default: "f", null: false
+    t.string   "accept",       default: "f", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "passenger_id"
-    t.string   "ignore",       limit: nil, default: false, null: false
-    t.string   "accept",       limit: nil, default: false, null: false
   end
 
-  create_table "rides", force: true do |t|
+  create_table "rides", force: :cascade do |t|
     t.string   "driver"
     t.text     "source"
     t.text     "destination"
     t.integer  "spots_available"
     t.integer  "spots_taken"
+    t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "leaving_date"
     t.time     "leaving_time"
     t.integer  "user_id"
-    t.decimal  "price"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -114,10 +119,3 @@ ActiveRecord::Schema.define(version: 20141219013928) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
-
-  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
-
-  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", name: "receipts_on_notification_id", column: "notification_id"
-
-end

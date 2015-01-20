@@ -15,6 +15,6 @@
 				- if devise_mapping.rememberable?
 					%div
 						= f.check_box :remember_me
-				%div= f.submit "Log in"
+				%div= f.submit "Log In",class: 'btn btn-primary btn-block'
 				%br
 				= render "devise/shared/links"
