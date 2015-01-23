@@ -1,4 +1,5 @@
 - model_class = Ride
+
 .page-header
 	.row
 		.col-lg-12
@@ -7,11 +8,9 @@
 			.pull-right{ :style => "padding-top: 1.1em;" }	
 				= link_to t('.new', :default => t("Post New Ride")), new_ride_path, :class => 'btn btn-primary btn-lg'
 .col-lg-8
-	-if @rides.blank?
+	-if @rides.nil?
 		%h2 Sorry no rides exist for that search, please try again
 	- @rides.each do |ride|
-	- request = @requests.find_by_ride_id(ride.id)
-	- request_id = request.passenger_id if request
 		.panel.panel-default.ride-box
 			.panel-heading.clearfix
 				.h3.pull-left{ :style => "margin-top: 0.5em;" }	
@@ -20,15 +19,15 @@
 					=ride.destination
 				.btn-group.pull-right{ :style => "padding-top: 0.5em;" }	
 					- if current_user 
-						= link_to t('.edit', :default => t("helpers.links.edit")), edit_ride_path(ride), :class => 'btn btn-default btn-md' if current_user.id == ride.user_id
-						= link_to t('.destroy', :default => t("helpers.links.destroy")), ride_path(ride), :method => :delete, :data => { :confirm => t('.confirm',:default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-md' if current_user.id == ride.user_id
+						= link_to t('.edit', :default => t("helpers.links.edit")), edit_ride_path(ride), :class => 'btn btn-default btn-md' if current_user_id == ride.user_id
+						= link_to t('.destroy', :default => t("helpers.links.destroy")), ride_path(ride), :method => :delete, :data => { :confirm => t('.confirm',:default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-md' if current_user_id == ride.user_id
 					
-						- if current_user.id != ride.user.id && current_user.id != request_id
+						- if current_user_id != ride.user_id && current_user_id != @requests_hash[ride.id]
 							= bootstrap_form_for(Request.new) do |f|
 								= f.hidden_field :user_id, value: "#{ride.user_id}"
 								= f.hidden_field :ride_id, value: "#{ride.id}"
 								= f.hidden_field :passenger, value: "#{current_user.name}"
-								= f.hidden_field :passenger_id, value: "#{current_user.id}"
+								= f.hidden_field :passenger_id, value: "#{current_user_id}"
 								= f.submit "Join", class: "btn btn-success"
 					- else
 						= bootstrap_form_for(Request.new) do |f|

@@ -11,11 +11,14 @@ class RidesController < ApplicationController
     @rides_destination = @rides.select('DISTINCT destination')
 
     if search_params.present? 
-      @rides = Ride.where(:source => params[:leaving_from]) if params[:leaving_from].present?
+      @rides = @rides.select(:source => params[:leaving_from]) if params[:leaving_from].present?
       @rides = Ride.where(:destination => params[:going_to])  if params[:going_to].present? 
     end
 
     @requests = Request.all
+    @requests_hash = Hash[*Request.all.collect {|it| [it.ride_id, it.passenger_id]}.flatten]
+
+
   end
 
   # GET /rides/1

@@ -11,6 +11,9 @@ gem 'mailboxer'
 gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
 
+gem 'to_words'
+
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
