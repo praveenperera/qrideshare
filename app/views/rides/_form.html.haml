@@ -7,6 +7,7 @@
 			= f.text_field :price, prepend: "$"
 			= f.text_field :source, label: 'Leaving From'
 			= f.text_field :destination
+			= f.text_field :description
 			= f.number_field :spots_available
 			= f.primary "Add New Rideshare" 
 			= link_to t('.cancel', :default => t("helpers.links.cancel")), rides_path, :class => 'btn btn-default'

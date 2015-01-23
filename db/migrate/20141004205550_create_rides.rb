@@ -4,6 +4,7 @@ class CreateRides < ActiveRecord::Migration
       t.string :driver
       t.text :source
       t.text :destination
+      t.text :description
       t.integer :spots_available
       t.integer :spots_taken, :default => 0 
       t.float :price

@@ -6,6 +6,15 @@ class RidesController < ApplicationController
   # GET /rides.json
   def index
     @rides = Ride.all
+
+    @rides_source = @rides.select('DISTINCT source')
+    @rides_destination = @rides.select('DISTINCT destination')
+
+    if search_params.present? 
+      @rides = Ride.where(:source => params[:leaving_from]) if params[:leaving_from].present?
+      @rides = Ride.where(:destination => params[:going_to])  if params[:going_to].present? 
+    end
+
     @requests = Request.all
   end
 
@@ -102,6 +111,10 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:user_id, :driver, :source, :destination, :spots_available, :spots_taken, :leaving_time, :leaving_date, :price, :accept)
+      params.require(:ride).permit(:user_id, :driver, :source, :destination, :description, :spots_available, :spots_taken, :leaving_time, :leaving_date, :price, :accept)
+    end
+
+    def search_params
+      params.permit(:leaving_from, :going_to)
     end
 end
