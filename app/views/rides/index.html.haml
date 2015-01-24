@@ -1,4 +1,5 @@
 - model_class = Ride
+-# =debug @rides
 
 .page-header
 	.row
@@ -66,10 +67,10 @@
 			=form_tag '/rides', :method =>  :get
 			%h4
 				Leaving From:	
-				=select_tag 'leaving_from', content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(@rides_source, 'source', 'source'),  { :class => 'form-control' }
+				=select_tag 'leaving_from', content_tag(:option,'select one...',:value=>"")+options_for_select(@rides_source, 'source'),  { :class => 'form-control' }
 			
 			%h4
 				Going To:
-				=select_tag 'going_to', content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(@rides_destination, 'destination', 'destination'), { :class => 'form-control' }
+				=select_tag 'going_to', content_tag(:option,'select one...',:value=>"")+options_for_select(@rides_destination, 'destination'), { :class => 'form-control' }
 			%h4=submit_tag "Search", :name => nil, :class => 'btn btn-success btn-md btn-block'				
  						
