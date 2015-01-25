@@ -1,19 +1,82 @@
-.row.msgs{
-	#top-id{
-		padding-top: 1em;
-		margin-top: 1em;
-	}
-	.left-side-list{
-		padding-top: 0.5em;
-		list-style-type: none;
+@import 'partials/flatUIColors';
+@import 'partials/myColors';
+@import 'mixins/convos';
 
-		li{
-			padding-left:0.25em;
+$link-color: #262626;
+
+hr{
+	padding: 0;
+	margin: 0;
+}
+
+.msgs{
+	#top-id{
+		padding-top: 1rem;
+		margin-top: 1rem;
+	}
+	.left-side{
+		list-style-type: none;
+		background-color: $msg_left_gray;
+		border: 1px solid #ccc;
+
+		.new-msg-button{
+			margin-top: 1rem;
+			margin-bottom: 0;
+			padding-bottom: 0;
+			background-color: $msg_left_gray;
+
+			span.glyphicon{
+				vertical-align:middle;
+				margin-left: 0em;
+				padding-right: 0.5em;
+			}	
+
+			a.button-link{
+				vertical-align:middle;
+				color: white;
+				text-decoration: none;	
+			}
+
+
+			hr{
+				position: relative; 
+				padding-top: 0;
+				margin-top: 1rem;
+				margin-bottom: -0.5rem;
+				border-top: 1px solid #ccc;
+			}
 		}
 
+		
+		li{
+			&:hover {
+			    background-color:$hover_gray;
+			    border-bottom: 1px solid #ececec;
+			    @include box-overflow($hover_gray, 1.5rem);
+			}
+			position: relative; 
+			padding-left: 0.5rem;
+			border-bottom: 1px solid #ececec;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+
+			a{
+				display: block;
+				color: $link-color;
+				text-decoration: none;	
+				margin-bottom: -0.6rem;
+			}
+
+		}
 	}
+
+
+	.right-side{
+		@extend .left-side;	
+	}
+		
 }
 
 .row.msgs#top-id{
-	padding-top: 1em;
+	padding-top: 1rem;
 }

@@ -1,0 +1,53 @@
+@mixin box-overflow($color, $width){
+	&:before,&:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: $width;
+		right: 100%;
+		background-color:$color;
+	}
+
+	&:after{
+		left: 100%;
+		border-bottom: 1px solid #ececec;
+		margin-top: -1px;
+		margin-bottom: -1px;
+	}
+
+	&:before{
+		right: 100%;
+		border-bottom: 1px solid #ececec;
+		margin-top: -1px;
+		margin-bottom: -1px;
+	}
+
+	&:first-child{
+		&:after{
+			left: 100%;
+			margin-top: 0px;
+		}
+		&:before{
+			right: 100%;
+			margin-top: 0px;
+		}
+	}
+}	
+
+@mixin hr-overflow($width){
+	&:before,&:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: $width;
+		right: 100%;
+		margin-top: -1px;
+		border-top: 1px solid #ccc;
+	}
+
+	&:after{
+		left: 100%;
+	}
+}		

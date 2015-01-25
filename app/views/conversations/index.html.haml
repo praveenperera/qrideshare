@@ -1,14 +1,30 @@
 %h1 Inbox
 .row.msgs#top-id
-	.col-sm-6.left-side
-		.new-msg-button
-			=button_to 'New Message', :new_conversation, :class => 'btn btn-primary'
-		.left-side-list
-			%h4
-				%li Inbox
-				%li Sent
-				%li Trash
-
+	.col-lg-10
+		.panel.panel-default
+			.panel-body
+				.col-sm-3.left-side
+					.new-msg-button
+						%button.btn.btn-primary.btn-lg.btn-block
+							%span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+							=link_to 'New Message', :new_conversation, :class => 'button-link'
+						%hr
+					.left-side-list
+						%h4
+							%li=link_to 'Inbox', :new_conversation, :class => ''
+							%li=link_to 'Sent', :new_conversation, :class => ''
+							%li=link_to 'Trash', :new_conversation, :class => ''
+				.col-sm-9.right-side
+					.new-msg-button
+						-# %button.btn.btn-primary.btn-lg.btn-block
+						-# 	%span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+						-# 	=link_to 'New Message', :new_conversation, :class => 'button-link'
+						%hr
+					.left-side-list
+						%h4
+							%li=link_to 'Inbox', :new_conversation, :class => ''
+							%li=link_to 'Sent', :new_conversation, :class => ''
+							%li=link_to 'Trash', :new_conversation, :class => ''
 -# %h2 Inbox
 -# %ul= render collection: mailbox.inbox, partial: 'conversation'
 -# %h2 Sentbox
