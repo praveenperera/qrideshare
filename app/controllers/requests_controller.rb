@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     @incoming_requests = Request.where(:user_id => current_user.id).where.not(:ignore => 'true', :accept => 'true')
-    @outgoing_requests = Request.where(:passenger_id => current_user.id)
+    @outgoing_requests = Request.where(:passenger_id => current_user.id).where.not(:ignore => 'true', :accept => 'true')
   end
 
   # GET /requests/1

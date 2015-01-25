@@ -2,12 +2,29 @@
 	.panel.panel-default
 		.panel-body
 			= f.hidden_field :driver, value: "#{current_user.name}"
-			= f.date_select :leaving_date
-			= f.time_select :leaving_time
-			= f.text_field :price, prepend: "$"
-			= f.text_field :source, label: 'Leaving From'
-			= f.text_field :destination
-			= f.text_field :description
-			= f.number_field :spots_available
-			= f.primary "Add New Rideshare" 
-			= link_to t('.cancel', :default => t("helpers.links.cancel")), rides_path, :class => 'btn btn-default'
+			-# = f.hidden_field :driver_email, value: "#{current_user.email}"
+			.col-md-3
+				= f.text_field :source, label: 'Leaving From'
+			.col-md-3
+				= f.text_field :destination
+			.col-md-3
+				= f.text_field :price, prepend: "$"
+			.col-xs-3
+				= f.number_field :spots_available
+
+			.col-md-6#datepicker
+				%label{for: 'leaving_date'} Leaving Date
+				%div.input-group.datetime.datepicker
+					= f.text_field_without_bootstrap :leaving_date, class: 'form-control make-datepicker'
+					%span.input-group-addon
+						%i.glyphicon.glyphicon-th
+			.col-md-6
+				%label{for: 'leaving_time'} Leaving Time
+				%div.input-group.datetime.timepicker
+					= f.text_field_without_bootstrap :leaving_time, class: 'form-control make-timepicker'
+					%span.input-group-addon
+						%i.glyphicon.glyphicon-time	
+			.col-md-12.need-top-padding	
+				= f.text_area :description, :rows => "8", placeholder: "Give your potential passengers a little more information, such as exactly where you're going to be leaving from, is you are going to be making any stops a long the way, how flexible are you on leaving time, ect ..." 
+				= f.primary "Add New Rideshare" 
+				= link_to t('.cancel', :default => t("helpers.links.cancel")), rides_path, :class => 'btn btn-default'

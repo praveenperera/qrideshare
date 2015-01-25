@@ -1,39 +1,56 @@
 - model_class = Request
 .page-header
 	%h1= "Driver's Bookings"
-.col-lg-8
-	- @rides.each do |ride|
-		.panel.panel-default
-			.panel-heading
-				%h1.panel-title
-					="#{ride.source} --> #{ride.destination}"
-			.panel-body
-				.row
-					.col-lg-3
-						%h1
-							=ride.leaving_date
-						-# %h2
-						-# 	=ride.leaving_time
-						%h2
-							=number_to_currency(ride.price)
-					.col-lg-5
-						.row
-							%h3
-								%strong Name: 
-								=ride.driver
-						.row
-							%h3
-								%strong Time: 
-								=ride.leaving_time
-						.row
-							%h3						
-								%strong Passengers: 
-								%ul
-								- @driver_bookings.each do |booking|
-									- if booking.ride_id == ride.id
-										%li
-											=booking.passenger
-				.row					
-					.col-lg-8
-						%h2
-							Description:					
+
+- @rides.each do |ride|
+	-if @rides.blank?
+		You do not have any rides please post one. 
+	.row	
+		.col-lg-8
+			.panel.panel-default.ride-box
+				.panel-heading.clearfix
+					.h3.pull-left{ :style => "margin-top: 0.5em;" }	
+						=ride.source
+						.span.glyphicon.glyphicon-arrow-right
+						=ride.destination
+					.btn-group.pull-right{ :style => "padding-top: 0.5em;" }	
+						- if current_user 
+							= link_to t('.edit', :default => t("helpers.links.edit")), edit_ride_path(ride), :class => 'btn btn-default btn-md' if current_user_id == ride.user_id
+							= link_to t('.destroy', :default => t("helpers.links.destroy")), ride_path(ride), :method => :delete, :data => { :confirm => t('.confirm',:default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-md' if current_user_id == ride.user_id
+
+				.panel-body
+					.row
+						.col-sm-5
+							%h3=ride.leaving_date.to_formatted_s :short_ordinal 
+							%h3=ride.leaving_time.to_formatted_s :time_12_hour
+						.col-sm-7
+							%h3 
+								%stong Spots Taken:
+								=ride.spots_taken	
+							%h3 
+								%stong Spots Available:
+								=ride.spots_available-ride.spots_taken
+
+					.row.bottom
+						.col-sm-5			
+							%h3 
+								%b Price:
+								=number_to_currency(ride.price)
+						.col-sm-7
+							%h3	Description:
+							%h4=ride.description
+		.col-lg-4
+			.panel.panel-default.search-box
+				.panel-heading.clearfix
+					%h2.center Passengers	
+				.panel-body.passenger-list	
+					- @driver_bookings.each do |booking|
+						- if booking.ride_id == ride.id
+							%h4
+								%li=booking.passenger
+						- else
+							%h4 No passengers yet
+					- if @driver_bookings.blank?
+						%h4 No passengers yet
+
+	

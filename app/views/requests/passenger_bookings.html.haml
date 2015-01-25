@@ -2,30 +2,37 @@
 .page-header
 	%h1= "Passenger's Bookings"
 .col-lg-8
+	- if @passenger_bookings.blank?
+		%h3 You do not have any rides please join one!
 	- @passenger_bookings.each do |p|
-		.panel.panel-default
-			.panel-heading
-				%h1.panel-title
-					="#{p.ride.source} --> #{p.ride.destination}"
+		.panel.panel-default.p.ride-box
+			.panel-heading.clearfix
+				.h3.pull-left{ :style => "margin-top: 0.5em;" }	
+					=p.ride.source
+					.span.glyphicon.glyphicon-arrow-right
+					=p.ride.destination
 			.panel-body
 				.row
-					.col-lg-3
-						%h1
-							=p.ride.leaving_date
-						-# %h2
-						-# 	=ride.leaving_time
-						%h2
+					.col-sm-5
+						%h3=p.ride.leaving_date.to_formatted_s :short_ordinal 
+						%h3=p.ride.leaving_time.to_formatted_s :time_12_hour
+					.col-sm-7
+						%h3 
+							%stong Driver Name: 
+							=p.ride.driver
+						%h3 
+							%stong Spots Taken:
+							=p.ride.spots_taken	
+						%h3 
+							%stong Spots Available:
+							=p.ride.spots_available-p.ride.spots_taken
+
+				.row.bottom
+					.col-sm-5			
+						%h3 
+							%b Price:
 							=number_to_currency(p.ride.price)
-					.col-lg-5
-						.row
-							%h3
-								%strong Name: 
-								=p.ride.driver
-						.row
-							%h3
-								%strong Time: 
-								=p.ride.leaving_time
-				.row					
-					.col-lg-8
-						%h2
-							Description:					
+					.col-sm-7
+						%h3	Description:
+						%h4=p.ride.description
+			

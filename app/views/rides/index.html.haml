@@ -9,8 +9,8 @@
 			.pull-right{ :style => "padding-top: 1.1em;" }	
 				= link_to t('.new', :default => t("Post New Ride")), new_ride_path, :class => 'btn btn-primary btn-lg'
 .col-lg-8
-	-if @rides.nil?
-		%h2 Sorry no rides exist for that search, please try again
+	-if @rides.blank?
+		%h3 Sorry no rides exist for that search, please try again
 	- @rides.each do |ride|
 		.panel.panel-default.ride-box
 			.panel-heading.clearfix

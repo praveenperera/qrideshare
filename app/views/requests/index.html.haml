@@ -30,7 +30,7 @@
 						-# = link_to t('.destroy', :default => t("helpers.links.destroy")), request_path(request), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 - else
 	%h3 Incoming Requests
-	"Sorry no requests to ride with you yet :(" 
+	You currently do no have any outstanding incoming requests!
 	%br
 
 - if !@outgoing_requests.empty?
@@ -59,7 +59,7 @@
 						= link_to t('.destroy', :default => t("helpers.links.destroy")), request_path(request), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
 - else
 	%h3 Outgoing Requests
-	"You have not sent out any requests to ride with other people :("
+	You currently do no have any outstanding outgoing requests!
 
 
 

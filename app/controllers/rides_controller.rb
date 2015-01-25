@@ -10,11 +10,6 @@ class RidesController < ApplicationController
 		@rides_source = @rides.uniq.pluck(:source)
 		@rides_destination = @rides.uniq.pluck(:destination)
 
-		# conditions = {}
-		# conditions[:source] = params[:leaving_from] if params[:leaving_from].present?
-		# conditions[:destination] = params[:going_to] if params[:going_to].present?
-		# @rides = Ride.where(conditions)
-
 		@rides = get_rides(search_params)
 
 		@requests = Request.all
