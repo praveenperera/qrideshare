@@ -1,10 +1,20 @@
-%h1 Conversations
-%h2 Inbox
-%ul= render collection: mailbox.inbox, partial: 'conversation'
-%h2 Sentbox
-%ul= render collection: mailbox.sentbox, partial: 'conversation'
-%h2 Trash
-= link_to "Empty Trash", empty_trash_path, data: {confirm: 'Are you sure?'}
-%ul= render collection: mailbox.trash, partial: 'conversation'
+%h1 Inbox
+.row.msgs#top-id
+	.col-sm-6.left-side
+		.new-msg-button
+			=button_to 'New Message', :new_conversation, :class => 'btn btn-primary'
+		.left-side-list
+			%h4
+				%li Inbox
+				%li Sent
+				%li Trash
 
-= link_to 'Start Conversation', :new_conversation
+-# %h2 Inbox
+-# %ul= render collection: mailbox.inbox, partial: 'conversation'
+-# %h2 Sentbox
+-# %ul= render collection: mailbox.sentbox, partial: 'conversation'
+-# %h2 Trash
+-# = link_to "Empty Trash", empty_trash_path, data: {confirm: 'Are you sure?'}
+-# %ul= render collection: mailbox.trash, partial: 'conversation'
+
+-# = link_to 'Start Conversation', :new_conversation
