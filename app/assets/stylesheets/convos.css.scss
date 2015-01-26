@@ -72,17 +72,35 @@ $link-color: #262626;
 
 	.right-side{
 		@extend .left-side-top;
-		
+		background-color: $msg_right_gray;
+
 		ul{
 			margin:0;
 			padding:0;
 		}
 
 		border: none;
-		background-color: $msg_left_gray;	
-		padding-left: 2rem;
+		padding-left: 3rem;
 		padding-right: 2rem;
 		margin-left:0;
+
+		.right-side-list{
+			margin-top: 0rem;
+			padding-top: 0rem;
+
+			h1{
+				margin-top: 0rem;
+				padding-top: 0rem;
+			}
+		}
+
+		li{
+			&:hover {
+				background-color: $hover_right_gray;
+			    border-bottom: 1px solid #ececec;
+			    @include box-overflow($hover_right_gray, 2rem);
+			}
+		}
 	}
 
 }

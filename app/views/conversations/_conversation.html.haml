@@ -1,5 +1,9 @@
-= content_tag_for(:li, conversation) do |conversation|
-	=conversation.subject
+= content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt|
+  - message = receipt.message
+  %h4= message.sender.name
+  %h4= message.subject
+  %h4= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
+  %p= truncate message.body, length: 350
 
 
 
@@ -8,10 +12,11 @@
 
 
 
-	-# - @trash = 2	
-	-# = link_to conversation.subject, conversation_path(conversation)
-	-# - if conversation.is_completely_trashed?(current_user)
-	-# 	= link_to 'Untrash', untrash_conversation_path(conversation), method: :post
-	-# 	= link_to 'Erase', erase_conversation_path(conversation), method: :post
-	-# - else
-	-# 	= link_to 'Move to trash', trash_conversation_path(conversation), method: :post
+
+-# - @trash = 2	
+-# = link_to conversation.subject, conversation_path(conversation)
+-# - if conversation.is_completely_trashed?(current_user)
+-# 	= link_to 'Untrash', untrash_conversation_path(conversation), method: :post
+-# 	= link_to 'Erase', erase_conversation_path(conversation), method: :post
+-# - else
+-# 	= link_to 'Move to trash', trash_conversation_path(conversation), method: :post

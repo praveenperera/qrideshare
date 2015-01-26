@@ -16,7 +16,8 @@ $(document).on('ready page:change', function() {
       var $input = $(v).find('.make-datepicker');
       $input.datetimepicker({
         format: 'MMM Do YYYY',
-        collapse: true
+        collapse: true,
+        pickTime: false,
       });
       $(v).find('span.input-group-addon').click(function(e) {
         $input.focus(); 
