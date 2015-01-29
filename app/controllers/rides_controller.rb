@@ -5,12 +5,12 @@ class RidesController < ApplicationController
 	# GET /rides
 	# GET /rides.json
 	def index
-		@rides = Ride.all
+		@rides = Ride.includes(:user)
 
 		@rides_source = @rides.uniq.pluck(:source)
 		@rides_destination = @rides.uniq.pluck(:destination)
 
-		@rides = get_rides(search_params)
+		@rides = get_rides(search_params) 
 
 		@requests = Request.all
 		@requests_hash = Hash[*Request.all.collect {|it| [it.ride_id, it.passenger_id]}.flatten]
@@ -131,7 +131,7 @@ class RidesController < ApplicationController
 				conditions[comb] = params['required'][comb] if params['required'][comb].present?
 			end  
 
-			Ride.where(conditions)
+			Ride.where(conditions).includes(:user)
 		end
 
 

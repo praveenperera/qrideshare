@@ -1,4 +1,4 @@
-- model_class = Request
+-model_class = Request
 .page-header
 	%h1= "Driver's Bookings"
 
@@ -21,28 +21,28 @@
 				.panel-body
 					.row
 						.col-sm-5
-							%h3=ride.leaving_date.to_formatted_s :short_ordinal 
-							%h3=ride.leaving_time.to_formatted_s :time_12_hour
+							%h4=ride.leaving_date.to_formatted_s :short_ordinal 
+							%h4=ride.leaving_time.to_formatted_s :time_12_hour
 						.col-sm-7
-							%h3 
+							%h4 
 								%stong Spots Taken:
 								=ride.spots_taken	
-							%h3 
+							%h4 
 								%stong Spots Available:
 								=ride.spots_available-ride.spots_taken
 
 					.row.bottom
 						.col-sm-5			
-							%h3 
+							%h4 
 								%b Price:
 								=number_to_currency(ride.price)
 						.col-sm-7
-							%h3	Description:
-							%h4=ride.description
+							%h4	Description:
+							%p=ride.description
 		.col-lg-4
 			.panel.panel-default.search-box
 				.panel-heading.clearfix
-					%h2.center Passengers	
+					%h3.center Passengers	
 				.panel-body.passenger-list	
 					- @driver_bookings.each do |booking|
 						- if booking.ride_id == ride.id

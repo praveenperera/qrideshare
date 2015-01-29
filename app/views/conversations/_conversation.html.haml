@@ -1,8 +1,8 @@
 = content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt|
   - message = receipt.message
-  %h4= message.sender.name
-  %h4= message.subject
-  %h4= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
+  %p= message.sender.name
+  %p= message.subject
+  %p= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
   %p= truncate message.body, length: 350
 
 

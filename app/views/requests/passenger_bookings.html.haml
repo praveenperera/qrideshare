@@ -14,25 +14,25 @@
 			.panel-body
 				.row
 					.col-sm-5
-						%h3=p.ride.leaving_date.to_formatted_s :short_ordinal 
-						%h3=p.ride.leaving_time.to_formatted_s :time_12_hour
+						%h4=p.ride.leaving_date.to_formatted_s :short_ordinal 
+						%h4=p.ride.leaving_time.to_formatted_s :time_12_hour
 					.col-sm-7
-						%h3 
+						%h4 
 							%stong Driver Name: 
 							=p.ride.driver
-						%h3 
+						%h4 
 							%stong Spots Taken:
 							=p.ride.spots_taken	
-						%h3 
+						%h4 
 							%stong Spots Available:
 							=p.ride.spots_available-p.ride.spots_taken
 
 				.row.bottom
 					.col-sm-5			
-						%h3 
+						%h4 
 							%b Price:
 							=number_to_currency(p.ride.price)
 					.col-sm-7
-						%h3	Description:
-						%h4=p.ride.description
+						%h4	Description:
+						%p=p.ride.description
 			
