@@ -1,33 +1,31 @@
+
 = bootstrap_form_for(@ride) do |f| 
 	.panel.panel-default
 		.panel-body
 			= f.hidden_field :driver, value: "#{current_user.name}"
 			-# = f.hidden_field :driver_email, value: "#{current_user.email}"
-			.col-md-3
-				= f.text_field :source, label: 'Leaving From'
-			.col-md-3
-				= f.text_field :destination
-			.col-md-3
-				= f.text_field :price, prepend: "$"
-			.col-xs-3
-				= f.number_field :spots_available
-
-			.col-md-6#datepicker
-				%label{for: 'leaving_date'} Leaving Date
-				%div.input-group.datetime.datepicker
-					= f.text_field_without_bootstrap :leaving_date, class: 'form-control make-datepicker'
-					%span.input-group-addon
-						%i.glyphicon.glyphicon-th
-			.col-md-6
-				%label{for: 'leaving_time'} Leaving Time
-				%div.input-group.datetime.timepicker
-					= f.text_field_without_bootstrap :leaving_time, class: 'form-control make-timepicker'
-					%span.input-group-addon
-						%i.glyphicon.glyphicon-time	
-			.col-md-12.need-top-padding	
-				= f.text_area :description, :rows => "8", placeholder: "Give your potential passengers a little more information, such as exactly where you're going to be leaving from, is you are going to be making any stops a long the way, how flexible are you on leaving time, ect ..." 
-				
-				= f.primary "Add New Rideshare" if controller.action_name == 'new'
-				= f.primary "Edit Rideshare" if controller.action_name == 'edit'
-
-				= link_to t('.cancel', :default => t("helpers.links.cancel")), rides_path, :class => 'btn btn-default'
+			.row
+				.col-md-3
+					= f.text_field :source, label: 'Leaving From'
+				.col-md-3
+					= f.text_field :destination
+				.col-md-3
+					= f.text_field :price, prepend: "$"
+				.col-md-3
+					= f.number_field :spots_available, min: '0', step: '1'
+			.row
+				.col-md-6#datepicker
+					=bootstrap_group_for(f, :leaving_date, 'datepicker','th') do
+						= f.text_field_without_bootstrap :leaving_date, class: 'form-control make-datepicker'
+							
+				.col-md-6
+					=bootstrap_group_for(f, :leaving_time, 'timepicker', 'time') do
+						= f.text_field_without_bootstrap :leaving_time, class: 'form-control make-timepicker'
+			.row		
+				.col-md-12.need-top-padding	
+					= f.text_area :description, :rows => "8", placeholder: "Give your potential passengers a little more information, such as exactly where you're going to be leaving from, is you are going to be making any stops a long the way, how flexible are you on leaving time, ect ..." 
+			.row
+				.col-md-12	
+					= f.primary "Add New Rideshare" if controller.action_name != 'edit'
+					= f.primary "Edit Rideshare" if controller.action_name == 'edit'
+					= link_to t('.cancel', :default => t("helpers.links.cancel")), rides_path, :class => 'btn btn-default'

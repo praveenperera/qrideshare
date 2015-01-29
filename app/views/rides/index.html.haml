@@ -55,9 +55,10 @@
 						%h3 
 							%b Price:
 							=number_to_currency(ride.price)
-					.col-sm-7
-						%h3	Description:
-						%h4=ride.description
+					-if ride.description.present?		
+						.col-sm-7
+							%h3	Description:
+							%h4=ride.description
 
 .col-lg-4
 	.panel.panel-default.search-box

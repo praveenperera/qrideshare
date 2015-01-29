@@ -1,12 +1,13 @@
 *.rbc
 capybara-*.html
 .rspec
-/log
-/tmp
-/db/*.sqlite3
-/public/system
-/coverage/
-/spec/tmp
+*.log
+log
+tmp
+db/*.sqlite3
+public/system
+coverage/
+spec/tmp
 **.orig
 rerun.txt
 pickle-email-*.html
@@ -29,3 +30,4 @@ config/secrets.yml
 /vendor/assets/bower_components
 *.bowerrc
 bower.jsondd
+*.log
