@@ -48,7 +48,7 @@ class MessagesController < ApplicationController
   end
 
   def message
-    Mailboxer::Message.find_by_id(message_params)
+    Mailboxer::Message.find_by_id(params[:message])
   end
 
   def fetch_params(key, *subkeys)

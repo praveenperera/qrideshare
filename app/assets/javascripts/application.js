@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+//= require conversations
 //= require_tree .
