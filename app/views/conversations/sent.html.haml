@@ -1,0 +1,41 @@
+%h1 Sentbox
+.row.msgs-panel
+	.col-md-10
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12.full-box
+						.row.row-eq-height
+							=render partial: 'conversations/partials/leftmenu', :locals => { :box => 'sent' }
+							.col-md-9.right-side
+								.right-side-list
+									=content_tag_for(:li, @receipts) do |receipt|
+										- message = receipt.message
+										.message-on-mainpage
+											%p.pull-right#date= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
+											%p.name= message.sender.name
+											-if message.is_read?(current_user)
+												%p.subject-read= message.subject
+											-else
+												%p.subject-unread
+													= icon('circle')
+													%span.text=message.subject
+											%p.body= truncate message.body, length: 350
+											.icons
+												= link_to icon('circle', "", id: 'unread', class: 'icon'), mark_as_unread_message_path(receipt.conversation, :message => message),:method=> :post
+												= link_to icon('circle-o', "|", id: 'read', class: 'icon'), mark_as_read_message_path(receipt.conversation, :message => message),:method=> :post
+												= link_to icon('trash', "", id: 'trash', class: 'icon'), trash_message_path(receipt.conversation, :message => message, :box => 'sentbox'),:method=> :post
+
+
+									
+		
+
+-# %h2 Inbox
+-# %ul= render collection: mailbox.inbox, partial: 'conversation'
+-# %h2 Sentbox
+-# %ul= render collection: mailbox.sentbox, partial: 'conversation'
+-# %h2 Trash
+-# = link_to "Empty Trash", empty_trash_path, data: {confirm: 'Are you sure?'}
+-# %ul= render collection: mailbox.trash, partial: 'conversation'
+
+-# = link_to 'Start Conversation', :new_conversation

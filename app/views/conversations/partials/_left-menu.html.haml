@@ -1,0 +1,18 @@
+.row.msgs-panel
+	.col-md-10
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12.full-box
+						.row.row-eq-height
+							.col-md-3.left-side-top
+								.new-msg-button
+									%button.btn.btn-primary.btn-lg.btn-block
+										%span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+										=link_to 'New Message', :new_conversation, :class => 'button-link'
+									%hr
+								.left-side-list
+									%h4
+										%li=link_to 'Inbox', conversations_inbox_path, :class => ''
+										%li=link_to 'Sent', conversations_sent_path, :class => ''
+										%li=link_to 'Trash', conversations_trash_path, :class => ''	

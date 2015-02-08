@@ -12,6 +12,7 @@ gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
+gem 'font-awesome-sass'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~>4.2.0'
@@ -22,7 +23,7 @@ gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-# gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,6 +33,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.9'
 
+gem 'puma'
 
 # Use unicorn as the app server
 # gem 'unicorn'

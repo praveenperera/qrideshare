@@ -36,6 +36,36 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
 
+  def mark_as_read
+    conversation.mark_as_read(current_user)
+    redirect_to conversations_path
+  end
+
+  def mark_as_unread
+    conversation.mark_as_unread(current_user)
+    redirect_to conversations_path
+  end
+
+  def index
+    redirect_to conversations_inbox_path
+  end
+
+  def inbox
+    @receipts = Mailboxer::Receipt.includes(:notification => :conversation).where(receiver_id: current_user.id, mailbox_type: 'inbox', trashed: false).order('created_at DESC')
+    render :inbox
+  end
+
+  def sent
+    @receipts = Mailboxer::Receipt.includes(:notification => :conversation).where(receiver_id: current_user.id, mailbox_type: 'sentbox', trashed: false).order('created_at DESC')
+    render :sent
+  end
+
+  def trash
+    @receipts = Mailboxer::Receipt.includes(:notification => :conversation).where(receiver_id: current_user.id, trashed: true).order('created_at DESC')
+    render :trash
+  end
+
+
   private
 
   def mailbox

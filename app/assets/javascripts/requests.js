@@ -22,6 +22,7 @@ $(document).on('ready page:change', function() {
       $(v).find('span.input-group-addon').click(function(e) {
         $input.focus(); 
       });
-    }); 
+    });
+
 });
 

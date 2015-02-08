@@ -2,19 +2,38 @@ Rails.application.routes.draw do
 
   match 'driver_bookings' => 'requests', :via => :get
   match 'passenger_bookings' => 'requests', :via => :get
+  match 'conversations/inbox' => 'conversations#inbox', :via => :get
+  match 'conversations/sent' => 'conversations#sent', :via => :get
+  match 'conversations/trash' => 'conversations#trash', :via => :get
+
   get 'empty_trash', to: 'conversations#empty_trash'
+
 
   resources :requests do
     get 'driver_bookings', on: :member
     get 'passenger_bookings', on: :member
   end
 
-  resources :conversations, only: [:index, :show, :new, :create] do
+  resources :conversations, only: [:index, :show, :new, :create, :inbox, :sent, :trash] do
     member do
       post :reply
       post :trash
       post :untrash
       post :erase
+      get :inbox
+      get :mark_as_read
+      get :mark_as_unread
+      get :trash_message
+    end
+  end
+
+  resources :messages, only: [:index, :show, :new, :create] do
+    member do
+      post :trash
+      post :untrash
+      post :erase
+      post :mark_as_read
+      post :mark_as_unread
     end
   end
         
