@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
   helper_method :mailbox, :conversation, :message
 
   def trash
-    @msg = Mailboxer::Receipt.where(notification_id: params[:message], receiver_id: current_user.id).first
-    @msg.update_attributes(trashed: true)
+    msg = Mailboxer::Receipt.where(notification_id: params[:message], receiver_id: current_user.id).first
+    msg.update_attributes(trashed: true)
     redirect_to :conversations
   end
 
@@ -15,7 +15,8 @@ class MessagesController < ApplicationController
   end
 
   def erase
-    current_user.mark_as_deleted message
+    msg = Mailboxer::Receipt.where(notification_id: params[:message], receiver_id: current_user.id).first
+    msg.update_attributes(deleted: true)
     redirect_to(:back)
   end
 

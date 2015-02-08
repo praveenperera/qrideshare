@@ -61,7 +61,7 @@ class ConversationsController < ApplicationController
   end
 
   def trash
-    @receipts = Mailboxer::Receipt.includes(:notification => :conversation).where(receiver_id: current_user.id, trashed: true).order('created_at DESC')
+    @receipts = Mailboxer::Receipt.includes(:notification => :conversation).where(receiver_id: current_user.id, trashed: true, deleted: false).order('created_at DESC')
     render :trash
   end
 
