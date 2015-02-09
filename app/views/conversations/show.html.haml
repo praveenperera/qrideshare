@@ -1,7 +1,36 @@
-%h1= conversation.subject
-%ul
-  = content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt|
-    - message = receipt.message
-    %h3= message.subject
-    %p= message.body
-= render 'messages/form', conversation: conversation
+%h1 Inbox
+-message = @msg
+.row.msgs-panel
+	.col-md-10
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12.full-box
+						.row.row-eq-height
+							=render partial: 'conversations/partials/leftmenu', :locals => { :box => 'inbox' }    
+							.col-md-9.right-side
+								.right-side-list
+									.message-on-mainpage
+										%p.pull-right#date= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
+										%p.name= message.sender.name
+										-if message.is_read?(current_user)
+											%p.subject-read= message.subject
+										-else
+											%p.subject-unread
+												= icon('circle')
+												%span.text=message.subject
+										%p.body= truncate message.body, length: 350
+
+
+									
+		
+
+-# %h2 Inbox
+-# %ul= render collection: mailbox.inbox, partial: 'conversation'
+-# %h2 Sentbox
+-# %ul= render collection: mailbox.sentbox, partial: 'conversation'
+-# %h2 Trash
+-# = link_to "Empty Trash", empty_trash_path, data: {confirm: 'Are you sure?'}
+-# %ul= render collection: mailbox.trash, partial: 'conversation'
+
+-# = link_to 'Start Conversation', :new_conversation

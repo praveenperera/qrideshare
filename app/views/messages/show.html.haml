@@ -1,0 +1,36 @@
+%h1 Inbox
+.row.msgs-panel
+	.col-md-10
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12.full-box
+						.row.row-eq-height
+							=render partial: 'messages/partials/leftmenu', :locals => { :box => 'inbox' }    
+							.col-md-9.right-side
+								.right-side-list
+									%li
+										.each-message
+											%p.pull-right#date= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
+											%p.name= message.sender.name
+											-if message.is_read?(current_user)
+												%p.subject-read= message.subject
+											-else
+												%p.subject-unread
+													= icon('circle')
+													%span.text=message.subject
+											%p.body= truncate message.body, length: 350
+
+
+									
+		
+
+-# %h2 Inbox
+-# %ul= render collection: mailbox.inbox, partial: 'conversation'
+-# %h2 Sentbox
+-# %ul= render collection: mailbox.sentbox, partial: 'conversation'
+-# %h2 Trash
+-# = link_to "Empty Trash", empty_trash_path, data: {confirm: 'Are you sure?'}
+-# %ul= render collection: mailbox.trash, partial: 'conversation'
+
+-# = link_to 'Start Conversation', :new_conversation

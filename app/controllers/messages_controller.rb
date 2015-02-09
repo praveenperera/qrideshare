@@ -2,20 +2,23 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
   helper_method :mailbox, :conversation, :message
 
+  def show
+  end  
+
   def trash
-    msg = Mailboxer::Receipt.where(notification_id: params[:message], receiver_id: current_user.id).first
+    msg = Mailboxer::Receipt.where(notification_id: params[:id], receiver_id: current_user.id).first
     msg.update_attributes(trashed: true)
     redirect_to :conversations
   end
 
   def untrash
-    msg = Mailboxer::Receipt.where(notification_id: params[:message], receiver_id: current_user.id).first
+    msg = Mailboxer::Receipt.where(notification_id: params[:id], receiver_id: current_user.id).first
     msg.update_attributes(trashed: false)
     redirect_to '/conversations/trash'
   end
 
   def erase
-    msg = Mailboxer::Receipt.where(notification_id: params[:message], receiver_id: current_user.id).first
+    msg = Mailboxer::Receipt.where(notification_id: params[:id], receiver_id: current_user.id).first
     msg.update_attributes(deleted: true)
     redirect_to(:back)
   end
@@ -49,7 +52,7 @@ class MessagesController < ApplicationController
   end
 
   def message
-    Mailboxer::Message.find_by_id(params[:message])
+    Mailboxer::Message.find_by_id(params[:id])
   end
 
   def fetch_params(key, *subkeys)

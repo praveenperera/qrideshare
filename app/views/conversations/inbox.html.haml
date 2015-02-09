@@ -11,22 +11,23 @@
 								.right-side-list
 									=content_tag_for(:li, @receipts) do |receipt|
 										- message = receipt.message
-										.message-on-mainpage
-											%p.pull-right#date= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
-											%p.name= message.sender.name
-											-if message.is_read?(current_user)
-												%p.subject-read= message.subject
-											-else
-												%p.subject-unread
-													= icon('circle')
-													%span.text=message.subject
-											%p.body= truncate message.body, length: 350
-											.icons
-												= link_to icon('reply', "|", id: 'reply', class: 'icon'), conversation_path(receipt.conversation)
-												-# = link_to icon('reply-all', "|", id: 'reply-all', class: 'icon'), reply_conversation_path(conversation)
-												= link_to icon('circle', "", id: 'unread', class: 'icon'), mark_as_unread_message_path(receipt.conversation, :message => message),:method=> :post
-												= link_to icon('circle-o', "|", id: 'read', class: 'icon'), mark_as_read_message_path(receipt.conversation, :message => message),:method=> :post
-												= link_to icon('trash', "", id: 'trash', class: 'icon'), trash_message_path(receipt.conversation,:message => message, :box => 'inbox'),:method=> :post
+										= link_to message_path(message) do
+											.message-on-mainpage
+												%p.pull-right#date= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
+												%p.name= message.sender.name
+												-if message.is_read?(current_user)
+													%p.subject-read= message.subject
+												-else
+													%p.subject-unread
+														= icon('circle')
+														%span.text=message.subject
+												%p.body= truncate message.body, length: 350
+												.icons
+													= link_to icon('reply', "|", id: 'reply', class: 'icon'), message_path(message)
+													-# = link_to icon('reply-all', "|", id: 'reply-all', class: 'icon'), reply_conversation_path(conversation)
+													= link_to icon('circle', "", id: 'unread', class: 'icon'), mark_as_unread_message_path(message),:method=> :post
+													= link_to icon('circle-o', "|", id: 'read', class: 'icon'), mark_as_read_message_path(message),:method=> :post
+													= link_to icon('trash', "", id: 'trash', class: 'icon'), trash_message_path(message, :box => 'inbox'),:method=> :post
 
 									
 		
