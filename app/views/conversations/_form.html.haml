@@ -1,7 +1,7 @@
 = bootstrap_form_for :conversation, url: :conversations do |f|
-  = f.text_field :recipients
+  = f.text_field :recipients, label: "Recipient Email"
   = f.text_field :subject
-  = f.text_field :body, as: :text
+  = f.text_area :body, :rows => "20", as: :text
   .form-actions
-    = f.button :submit, class: 'btn-primary'
+    = f.button :Send, class: 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), conversations_path, :class => 'btn btn-default'

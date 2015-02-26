@@ -8,12 +8,16 @@ class ConversationsController < ApplicationController
 
     conversation = current_user.send_message(recipients, *conversation_params(:body, :subject)).conversation
 
-    redirect_to conversation_path(conversation)
+    redirect_to(:conversations)
+  end
+
+  def new_message
+    @msg_to = User.find_by_id(params[:id]).email
   end
 
   def reply
-    current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
-    redirect_to conversation_path(conversation)
+    current_user.reply_to_conversation(conversation, *conversation_params(:body, :subject))
+    redirect_to(:back)
   end
 
   def trash

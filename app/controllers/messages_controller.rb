@@ -11,6 +11,9 @@ class MessagesController < ApplicationController
     redirect_to :conversations
   end
 
+  def reply
+  end
+
   def untrash
     msg = Mailboxer::Receipt.where(notification_id: params[:id], receiver_id: current_user.id).first
     msg.update_attributes(trashed: false)

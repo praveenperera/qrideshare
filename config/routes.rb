@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :mark_as_read
       get :mark_as_unread
       get :trash_message
+      get :new_message
     end
   end
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
       post :erase
       post :mark_as_read
       post :mark_as_unread
+      get :reply
     end
   end
         

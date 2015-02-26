@@ -11,6 +11,8 @@
 					=p.ride.source
 					.span.glyphicon.glyphicon-arrow-right
 					=p.ride.destination
+				.btn.pull-right{ :style => "padding-top: 0.5em;" }	
+					=link_to "Message Driver", new_message_conversation_path(p.ride.user_id), :class => 'btn btn-success btn-md'
 			.panel-body
 				.row
 					.col-sm-5

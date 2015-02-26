@@ -1,2 +1,13 @@
 %h1 Start Conversation
-= render 'form'
+.row.msgs-panel
+	.col-md-10
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12.full-box
+						.row.row-eq-height
+							=render partial: 'messages/partials/leftmenu', :locals => { :box => 'inbox' }    
+							.col-md-9.right-side
+								.right-side-list.new-message
+									= render 'form'
+

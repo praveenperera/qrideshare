@@ -1,0 +1,68 @@
+.message-header {
+	p,h4{
+		margin: 0.20em;
+	}
+
+	padding-bottom: 0.5em;
+}
+
+.full-message{
+		.icons {
+			text-align: right;
+		}	
+		
+		.icon{
+			padding-right: 0.2rem;
+			font-size: 1.6rem;
+		}
+
+		#trash{
+			padding-left: 0.2rem;
+			padding-right: 0;
+		}
+
+		a{
+			display: inline !important;
+			margin: 0;
+		}
+
+		#unread{
+			color: #2865a8;
+		}	
+
+		p.message-time{
+			padding-bottom:1.5rem;
+		}
+}
+
+.msgs-panel .right-side{ 
+
+	.new-message{
+  		padding-top: 0.5rem;
+	}
+
+	.right-side-list.full-message{
+			.icons{
+				text-align: right;
+			}	
+			
+			.icon{
+				padding-right: 0.2rem;
+				font-size: 1.6rem;
+			}
+
+			#trash{
+				padding-left: 0.2rem;
+				padding-right: 0;
+			}
+
+			a{
+				display: inline !important;
+				margin: 0;
+			}
+
+			#unread{
+				color: #2865a8;
+			}	
+	}
+}

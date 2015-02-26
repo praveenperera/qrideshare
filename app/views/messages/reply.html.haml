@@ -1,0 +1,21 @@
+%h1 Reply
+.row.msgs-panel
+	.col-md-10
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-12.full-box
+						.row.row-eq-height
+							=render partial: 'messages/partials/leftmenu', :locals => { :box => 'inbox' }    
+							.col-md-9.right-side
+								.right-side-list.reply-message
+									= bootstrap_form_for :conversation, url: reply_conversation_path(message.conversation), :method=> :post  do |f|
+										= f.text_field :subject, :value => "Re: #{message.subject}"
+										= f.text_area :body, :rows => "20", as: :text, :value => "\n\n On #{message.created_at.to_formatted_s :short_datetime} #{message.sender.name} \n---------------------------- \n #{message.body.html_safe}"
+
+										.form-actions
+											= f.button :Send, class: 'btn btn-primary'
+											= link_to t('.cancel', :default => t("helpers.links.cancel")), conversations_path, :class => 'btn btn-default'
+
+
+

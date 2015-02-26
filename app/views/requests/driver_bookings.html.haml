@@ -47,7 +47,9 @@
 					- @driver_bookings.each do |booking|
 						- if booking.ride_id == ride.id
 							%h4
-								%li=booking.passenger
+								%li
+									=link_to booking.passenger, new_message_conversation_path(booking.passenger_id)
+
 						- else
 							%h4 No passengers yet
 					- if @driver_bookings.blank?

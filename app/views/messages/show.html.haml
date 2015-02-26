@@ -8,18 +8,23 @@
 						.row.row-eq-height
 							=render partial: 'messages/partials/leftmenu', :locals => { :box => 'inbox' }    
 							.col-md-9.right-side
-								.right-side-list
+								.right-side-list.full-message
 									%li
-										.each-message
-											%p.pull-right#date= message.created_at.strftime("%b #{message.created_at.day.ordinalize}, %Y")
-											%p.name= message.sender.name
-											-if message.is_read?(current_user)
-												%p.subject-read= message.subject
-											-else
-												%p.subject-unread
-													= icon('circle')
-													%span.text=message.subject
-											%p.body= truncate message.body, length: 350
+										.row
+											.col-md-10
+												.message-header											
+													%h4.message-subject=message.subject											
+													%p.message-from=message.sender.name											
+													%p.message-time=message.created_at.to_formatted_s :full_datetime
+											.col-md-2		
+												.icons
+												= link_to icon('reply', "|", id: 'reply', class: 'icon'), reply_message_path(message)
+												= link_to icon('trash', "", id: 'trash', class: 'icon'), trash_message_path(message),:method=> :post
+										.row
+											.col-md-12
+												.message-body
+													%p=new_message_body
+	
 
 
 									
