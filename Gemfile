@@ -8,6 +8,9 @@ gem 'rdiscount'
 gem 'bootstrap_form'
 gem 'mailboxer'
 
+gem 'rails_12factor', group: :production
+
+
 gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
 gem 'momentjs-rails', '>= 2.8.1'
