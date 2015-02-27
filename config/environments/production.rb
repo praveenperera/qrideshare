@@ -1,7 +1,7 @@
 Rails.application.configure do
   #debuging
   config.action_dispatch.show_exceptions = true
-  config.action_controller.consider_all_requests_local = true
+  # config.action_controller.consider_all_requests_local = true
 
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -16,7 +16,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
