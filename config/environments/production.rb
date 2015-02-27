@@ -27,7 +27,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'ppraveen25@gmail.com',
-    password:             'blackman88',
+    password:             'zabelmumddozpuev',
     authentication:       'plain',
     enable_starttls_auto: true  }
 
