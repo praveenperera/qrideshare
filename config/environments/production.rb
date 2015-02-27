@@ -1,5 +1,8 @@
 Rails.application.configure do
+  #debuging
   config.action_dispatch.show_exceptions = true
+  config.action_controller.consider_all_requests_local = true
+
 
   # Settings specified here will take precedence over those in config/application.rb.
 
