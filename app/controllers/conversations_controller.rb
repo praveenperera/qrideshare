@@ -7,8 +7,8 @@ class ConversationsController < ApplicationController
     recipients = User.where(email: recipient_emails).all
 
     conversation = current_user.send_message(recipients, *conversation_params(:body, :subject)).conversation
-    redirect_to conversations_path
-    
+    redirect_to conversations_inbox_path
+
   end
 
   def new_message
@@ -22,32 +22,32 @@ class ConversationsController < ApplicationController
 
   def trash
     conversation.move_to_trash(current_user)
-    redirect_to conversations_path
+    redirect_to conversations_inbox_path
   end
 
   def untrash
     conversation.untrash(current_user)
-    redirect_to conversations_path
+    redirect_to conversations_inbox_path
   end
 
   def erase
     conversation.mark_as_deleted current_user
-    redirect_to conversations_path
+    redirect_to conversations_inbox_path
   end
 
   def empty_trash
     current_user.mark_as_deleted(mailbox.trash.to_a)
-    redirect_to conversations_path
+    redirect_to conversations_inbox_path
   end
 
   def mark_as_read
     conversation.mark_as_read(current_user)
-    redirect_to conversations_path
+    redirect_to conversations_inbox_path
   end
 
   def mark_as_unread
     conversation.mark_as_unread(current_user)
-    redirect_to conversations_path
+    redirect_to conversations_inbox_path
   end
 
   def index
