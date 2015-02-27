@@ -13,6 +13,7 @@ class ConversationsController < ApplicationController
 
   def new_message
     @msg_to = User.find_by_id(params[:id]).email
+    redirect_to(:back)
   end
 
   def reply
