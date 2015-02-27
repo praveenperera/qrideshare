@@ -1,8 +1,12 @@
-Rails.application.configure do
+Rails.application.configure do  
   #debuging
-  config.action_dispatch.show_exceptions = true
-  # config.action_controller.consider_all_requests_local = true
+    config.action_dispatch.show_exceptions = true
+    # config.action_controller.consider_all_requests_local = true
+    
+    #Set to :debug to see everything in the log.
+    config.log_level = :debug
 
+    config.action_mailer.default_url_options = { :host => "https://qrideshare.herokuapp.com" }
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -47,8 +51,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Set to :debug to see everything in the log.
-  config.log_level = :debug
+
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
