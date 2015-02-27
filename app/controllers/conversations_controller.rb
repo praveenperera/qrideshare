@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
 
   def reply
     current_user.reply_to_conversation(conversation, *conversation_params(:body, :subject))
-    redirect_to(:back)
+    redirect_to(:conversations)
   end
 
   def trash
