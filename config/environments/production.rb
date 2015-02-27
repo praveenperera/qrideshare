@@ -1,9 +1,9 @@
 Rails.application.configure do  
   #debuging
-    config.action_dispatch.show_exceptions = true    
-    config.log_level = :debug
-    config.consider_all_requests_local       = true 
-    config.action_controller.perform_caching = false
+    # config.action_dispatch.show_exceptions = true    
+    # config.log_level = :debug
+    # config.consider_all_requests_local       = true 
+    # config.action_controller.perform_caching = false
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -17,8 +17,8 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  # config.consider_all_requests_local       = false 
-  # config.action_controller.perform_caching = true
+  config.consider_all_requests_local       = false 
+  config.action_controller.perform_caching = true
 
   config.action_mailer.default_url_options = { :host => "qrideshare.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
@@ -60,7 +60,7 @@ Rails.application.configure do
   # config.force_ssl = true
 
   #Set to :debug to see everything in the log.
-  # config.log_level = :info
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
