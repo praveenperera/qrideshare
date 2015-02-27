@@ -1,8 +1,9 @@
 .col-md-3.left-side-top
 	.new-msg-button
-		%button.btn.btn-primary.btn-lg.btn-block
-			%span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
-			=link_to 'New Message', :new_conversation, :class => 'button-link'
+		= link_to :new_conversation do
+			%button.btn.btn-primary.btn-lg.btn-block
+				%span.glyphicon.glyphicon-edit{"aria-hidden" => "true"}
+				=link_to 'New Message', :new_conversation, :class => 'button-link'
 		%hr
 	.left-side-list
 		%h4
