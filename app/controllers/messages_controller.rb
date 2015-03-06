@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
   helper_method :mailbox, :conversation, :message
 
   def show
+    current_user.mark_as_read(message)
+    render :show
   end  
 
   def trash
