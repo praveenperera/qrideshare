@@ -10,7 +10,7 @@ class RidesController < ApplicationController
 		@rides_source = @rides.uniq.pluck(:source)
 		@rides_destination = @rides.uniq.pluck(:destination)
 
-		@rides = get_rides(search_params) 
+		@rides = get_rides(search_params)
 
 		@requests = Request.all
 		@requests_hash = Hash[*Request.all.collect {|it| [it.ride_id, it.passenger_id]}.flatten]
@@ -31,19 +31,19 @@ class RidesController < ApplicationController
 	def accept
 		ride = Ride.find(params[:ride_id])
 		if ride.spots_taken < ride.spots_available
-			@ride.increment!(:spots_taken)      
+			@ride.increment!(:spots_taken)
 			@request =  Request.find_by_id(params[:request_id])
 			@request.update_attribute(:accept, 'true')
 			redirect_to requests_path, notice: 'Passenger request was accepted'
 		else
 			redirect_to requests_path, alert: 'Ride is already full'
-		end  
+		end
 	end
 
 	# GET /rides/1/edit
-	def edit 
+	def edit
 		if current_user.id == @ride.user_id
-			render :edit 
+			render :edit
 		else
 			redirect_to rides_path, alert: 'You can only change the rideshares you created.'
 		end
@@ -82,7 +82,7 @@ class RidesController < ApplicationController
 			respond_to do |format|
 				format.html { redirect_to rides_path, alert: 'You can only change the rideshares you created.' }
 				format.json { render json: @ride.errors, status: :unprocessable_entity }
-			end  
+			end
 		end
 	end
 
@@ -99,8 +99,8 @@ class RidesController < ApplicationController
 			respond_to do |format|
 				format.html { redirect_to rides_path, alert: 'You can only delete rideshares you created.' }
 				format.json { render json: @ride.errors, status: :unprocessable_entity }
-			end  
-		end        
+			end
+		end
 	end
 
 	private
@@ -119,9 +119,9 @@ class RidesController < ApplicationController
 			params_hash = {'required' => { 'source' => params[:leaving_from], 'destination' => params[:going_to]}}
 		end
 
-		def get_rides(params) 
+		def get_rides(params)
 
-			possible_combination = [] 
+			possible_combination = []
 			conditions = {}
 			key_array = params['required'].keys
 
@@ -129,7 +129,7 @@ class RidesController < ApplicationController
 
 			possible_combination.each do |comb|
 				conditions[comb] = params['required'][comb] if params['required'][comb].present?
-			end  
+			end
 
 			Ride.where(conditions).includes(:user)
 		end
