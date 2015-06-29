@@ -1,6 +1,6 @@
 ## Synopsis
 
-Qrideshare is a platform for Queen's University students to share rides between their homes and Queen's University in Kingston ON. This project is currently in currently in a very early alpha stage.
+Qrideshare is a platform for Queen's University students to share rides between their homes and Queen's University in Kingston ON. This project is currently in currently in a very early alpha stage. Front end was designed using the bootstrap framework.
 
 Currently the project is very simple, users are able to sign up and post a ride with information such as when and where they are leaving from and going to. Once posted other users can request a seat. If the driver accepts the person as a passenger, they will be added to the ride and the posted ride will show one less available spot.
 
