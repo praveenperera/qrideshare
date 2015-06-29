@@ -8,6 +8,11 @@ This project also lets users communicate with each other with a email type messa
 
 There are plans to expand this platform to other universities as well.
 
+### Live Demo
+Live demo available at: https://qrideshare.herokuapp.com
+
+
+
 ## Contributors
 
 Currently I am the only contributor to the project, additional contributors are welcome.
