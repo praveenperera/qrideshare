@@ -1,8 +1,8 @@
-Rails.application.configure do  
+Rails.application.configure do
   #debuging
-    # config.action_dispatch.show_exceptions = true    
+    # config.action_dispatch.show_exceptions = true
     # config.log_level = :debug
-    # config.consider_all_requests_local       = true 
+    # config.consider_all_requests_local       = true
     # config.action_controller.perform_caching = false
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -17,19 +17,19 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false 
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   config.action_mailer.default_url_options = { :host => "qrideshare.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            'ppraveen25@gmail.com',
-    password:             'zabelmumddozpuev',
-    authentication:       'plain',
-    enable_starttls_auto: true  }
+    address: 'smtp.mandrillapp.com',
+    port: 587,
+    enable_starttls_auto: true,
+    user_name: ENV['MAILER_USERNAME'],
+    password: ENV['MAILER_API_KEY'],
+    authentication: 'login'
+  }
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.

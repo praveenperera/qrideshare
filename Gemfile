@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
-gem 'pundit'
 gem 'devise'
+gem 'pundit'
+gem 'figaro'
 gem 'haml'
 gem "haml-rails"
 gem 'rdiscount'
@@ -74,7 +75,7 @@ group :development, :test do
   gem 'rack-livereload'
   gem 'rb-fsevent'
 
-  gem 'erb2haml'    
+  gem 'erb2haml'
   gem 'html2haml'
 
   gem "better_errors"
