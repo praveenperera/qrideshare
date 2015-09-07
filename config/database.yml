@@ -80,9 +80,6 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
+
 production:
-  <<: *default
-  database: QRideShare_production
-  username: Praveen
-  password: <%= ENV['QRIDESHARE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
