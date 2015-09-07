@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'devise'
 gem 'pundit'
@@ -12,7 +12,6 @@ gem 'bootstrap_form'
 gem 'mailboxer'
 
 gem 'rails_12factor', group: :production
-
 
 gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'

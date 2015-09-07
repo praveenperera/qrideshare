@@ -1,16 +1,6 @@
-
-## Live Demo
-Live demo available at: https://qrideshare.herokuapp.com
-
 ## Synopsis
 
-Qrideshare is a platform for Queen's University students to share rides between their homes and Queen's University in Kingston ON. This project is currently in currently in a very early alpha stage. Front end was designed using the bootstrap framework.
-
-Currently the project is very simple, users are able to sign up and post a ride with information such as when and where they are leaving from and going to. Once posted other users can request a seat. If the driver accepts the person as a passenger, they will be added to the ride and the posted ride will show one less available spot.
-
-This project also lets users communicate with each other with a email type messaging system. This system was built using the [mailboxer gem](https://github.com/mailboxer/mailboxer). Additional methods were added into the messaging and conversation controllers for added functionality. Currently users can send messages to each other from links in the requests page or if they know the users's username (the email that they signed up with).
-
-There are plans to expand this platform to other universities as well.
+This repo 
 
 ## Contributors
 
