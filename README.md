@@ -1,6 +1,6 @@
 ## Synopsis
 
-This repo 
+Qrideshare is a platform for Queen's University students to share rides between their homes and Queen's University in Kingston ON. This project is currently in a very early alpha stage. Front end was designed using the bootstrap framework.
 
 ## Contributors
 
