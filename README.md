@@ -1,6 +1,17 @@
+##Preview
+Live Demo: http://qrideshare.praveenperera.com
+
+Screenshots: http://praveenperera.com#projects
+
 ## Synopsis
 
 Qrideshare is a platform for Queen's University students to share rides between their homes and Queen's University in Kingston ON. This project is currently in a very early alpha stage. Front end was designed using the bootstrap framework.
+
+Technologies involved in this project: 
+
+* Authentication using devise
+* Front end design using Materialze CSS
+* Email style conversations system
 
 ## Contributors
 
